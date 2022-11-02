@@ -12,7 +12,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <title>A-4 seowoo</title>
+    <title>About Seowoo</title>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <style>
@@ -59,7 +59,7 @@
     }
 
     .desc {
-        margin: 20px 20px 20px 25px;
+        margin: 25px;
     }
 
     .name {
@@ -179,7 +179,7 @@
             url: "/comments",
             data: {},
             success: function (response) {
-                let comments = response['all_comment']
+                let comments = response['comments']
                 for (let i = 0; i < comments.length; i++) {
                     let name = comments[i]['name']
                     let comment = comments[i]['comment']
