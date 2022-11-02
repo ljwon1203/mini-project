@@ -22,3 +22,13 @@ python app.py                        4. 서버실행
 
 1. app.py 내의 DB주소는 git push 로 올리지 않습니다.
 2. 코드를 가져온 후 실행시키기 위해선, DB주소를 채워주어야 합니다.
+
+## 각 팀원별 페이지 주소
+
+localhost:5000 뒤에 붙히실 주소입니다.
+ex) http://localhost:5000/~~~
+
+- 서우 : /members?name=seowoo
+- 현진 : /members?name=hyunjin
+- 혜은 : /members?name=hyeeun
+- 재원 : /members?name=jaewon
