@@ -13,7 +13,7 @@
             crossorigin="anonymous"></script>
 
     <title>4조였지만 3조입니다.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link href="https://drive.google.com/uc?export=download&id=1cKtGAdMCQDiwA3EMlLo0ijTGXN8NcQpm" rel="stylesheet">
 </head>
 <style>
     * {
@@ -21,18 +21,15 @@
     }
 
     .top {
-        width: 100%;
-        height: 230px;
-        color: white;
+        width: 102;
+        height: 235px;
+        place-items: center;
+        background-color: #fbfbfb;
 
-        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("");
-        background-size: cover;
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),  url("/static/완성.gif");
+        background-size: contain;
+        background-repeat: no-repeat;
         background-position: center;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
 
     .teampost {
@@ -48,7 +45,7 @@
 
     .teampost h3 {
         font-weight: bold;
-        font-size: xx-large;
+        font-size: 30px;
         margin-bottom: 25px;
     }
 
@@ -58,6 +55,7 @@
 
     .team {
         display: grid;
+        gap: 25px;
         grid-template-columns: 1fr 1fr 1fr;
         margin-top: 20px;
         padding-top: 30px;
@@ -122,7 +120,7 @@
     .guest {
         width: 95%;
         max-width: 700px;
-        margin: auto auto 20px auto;
+        margin: auto auto 40px auto;
         box-shadow: 0px 0px 3px 0px black;
         padding: 25px;
 
@@ -144,15 +142,16 @@
     }
 
     .card {
-        width: 95%;
         max-width: 700px;
-        margin: 15px auto;
+        margin: 25px auto;
     }
 
     .mybtn {
         float: right;
     }
-
+    .guest-note {
+        margin-bottom: 70px;
+    }
     @media (max-width: 760px) {
         #grid {
             display: block;
@@ -231,33 +230,12 @@
 <body>
 
 <div class="top">
-    <h1>4조였지만 3조입니다.</h1>
 </div>
 <div class="teampost">
     <h3>4조였지만 3조인 우리 팀은?</h3>
     <p class="which">개발자가 되겠다는 같은 마음으로 모여 누구보다 열심히 노력하는 팀</p>
-    <div class="team" id="grid">
-        <div class="t1">
-            <h5>우리팀의 약속</h5>
-            <p>✔ 다 같이 물어보고 알려주면서 성장하기</p>
-            <p>✔ 서로 존중하고 매너있게 말하기</p>
-            <p>✔ 적극적인 자세로 배우면서 임하여 하루 하나 이상은 배워가기</p>
-        </div>
-        <div class="t2">
-            <h5>우리팀의 특징</h5>
-            <p>✔ 애완견, 반려묘와 함께하는 팀원들이 많음</p>
-            <p>✔ 조용하지만 서로 믿고 최선을 다하며 각자 할 일을 아주 잘함</p>
-            <p>✔ 9 to 9은 여유롭게 가능한 무거운 엉덩이를 가진 팀</p>
-        </div>
-        <div class="t3">
-            <h5>4. 추구하는 목표</h5>
-            <p>✔ 어제보다 성장한 내일의 나</p>
-            <p>✔ 1인분 몫은 확실히 하는 개발자가 되어서 추후에는 웃으며 만날 수 있길!!</p>
-            <p>✔ 수료하는 날까지 중도포기 없이 최상의 결과를 낼 수 있도록 끝까지 완주!!!</p>
-        </div>
 
-    </div>
-    <div class="members">
+    <div class="members" id="members">
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col">
                 <div class="card">
@@ -326,8 +304,29 @@
             </div>
         </div>
     </div>
+    <div class="team" id="grid">
+        <div class="t1">
+            <h5>우리팀의 약속</h5>
+            <p>✔ 다 같이 물어보고 알려주면서 성장하기</p>
+            <p>✔ 서로 존중하고 매너있게 말하기</p>
+            <p>✔ 적극적인 자세로 배우면서 임하여 하루 하나 이상은 배워가기</p>
+        </div>
+        <div class="t2">
+            <h5>우리팀의 특징</h5>
+            <p>✔ 애완견, 반려묘와 함께하는 팀원들이 많음</p>
+            <p>✔ 조용하지만 서로 믿고 최선을 다하며 각자 할 일을 아주 잘함</p>
+            <p>✔ 9 to 9은 여유롭게 가능한 무거운 엉덩이를 가진 팀</p>
+        </div>
+        <div class="t3">
+            <h5>추구하는 목표</h5>
+            <p>✔ 어제보다 성장한 내일의 나</p>
+            <p>✔ 1인분 몫은 확실히 하는 개발자가 되어서 추후에는 웃으며 만날 수 있길!!</p>
+            <p>✔ 수료하는 날까지 중도포기 없이 최상의 결과를 낼 수 있도록 끝까지 완주!!!</p>
+        </div>
+
+    </div>
 </div>
-<button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">방명록 남기기</button>
+<button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">응원하기</button>
 
 <div class="guest" id="guest" style="background-color: ghostwhite">
     <div class="form-floating mb-3">
@@ -339,7 +338,7 @@
         <label for="comment">남기고 싶은 말</label>
     </div>
     <div class="mybtns">
-        <button type="button" class="btn btn-secondary" onclick="save_comment()">방명록 남기기</button>
+        <button type="button" class="btn btn-secondary" onclick="save_comment()">응원 남기기</button>
         <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
     </div>
 </div>
