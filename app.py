@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-client = MongoClient('각자의 DB주소')
+client = MongoClient('mongodb+srv://xogns98:g5Q2wGKzXQO3NijM@cluster0.fe5v02d.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 '''
@@ -39,14 +39,14 @@ def post_comments():
         'comment': comment_receive
     }
 
-    doc.comments.insert_one(doc)
+    db.comments.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
 # 3. comments DELETE
 @app.route("/comments/delete", methods=["POST"])
 def delete_comments():
     name_receive = request.form['name_give']
-    doc.comments.delete_one({"name": name_receive})
+    db.comments.delete_one({"name": name_receive})
     return jsonify({'msg': '삭제 완료!'})
 
 
