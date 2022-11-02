@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
     <title>About Seowoo</title>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
@@ -24,8 +24,7 @@
         width: 100%;
         height: 250px;
         color: white;
-
-        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/76/19/4157be79b5285e8.jpg");
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://mblogthumb-phinf.pstatic.net/MjAyMTA5MTFfMTgw/MDAxNjMxMzU5NDI1MDY0.IM30cafcGBMd1lJVRaDlfa7KaqTRa0mIpA-sq6WBP9Mg.UsrZ_-HgeMJE8jHAm7RqZR4ZgykfQdXNrMTnOClZoyQg.GIF.studygir/776e5r7_%2843%29.gif?type=w2");
         background-size: cover;
         background-position: center;
 
@@ -33,20 +32,27 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        pointer-events: none;
+
+
     }
 
     .mypost {
         width: 95%;
         max-width: 950px;
-        height: 10%;
+        height: 12%;
         margin: 30px auto;
         display: grid;
         grid-template-columns: 200px 1fr;
+        box-shadow: 0px 0px 14px 7px #e5e8ea;
+        background-color: ghostwhite;
     }
 
     .img {
-        margin-top: 10px;
+        margin: 15px 0 15px 0;
         border-right: 1px solid #dbdbdb;
+        border-left-height: 50px;
 
         display: flex;
         flex-direction: column;
@@ -97,11 +103,15 @@
     .guest {
         width: 95%;
         max-width: 700px;
-        margin: auto auto 20px auto;
-        box-shadow: 0px 0px 3px 0px black;
+        margin: auto auto 40px auto;
+        box-shadow: 0px 0px 14px 7px #e5e8ea;
         padding: 25px;
 
         display: none;
+    }
+
+    .guest-note {
+        margin-bottom: 50px;
     }
 
     .mybtns {
@@ -110,21 +120,25 @@
         align-items: center;
         justify-content: center;
 
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
-    .mybtns>button {
+    .mybtns > button {
         margin-right: 10px;
     }
 
     .card {
         width: 95%;
         max-width: 700px;
-        margin: 15px auto;
+        margin: 15px auto ;
+        box-shadow: 0px 0px 14px 7px #e5e8ea;
     }
 
     .mybtn {
         float: right;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
     }
 
     .posting-btn {
@@ -133,14 +147,9 @@
         margin: auto auto 40px auto;
         display: block;
         padding: 15px;
-        border-radius: 50px;
+        border-radius: 20px;
 
         font-weight: bold;
-    }
-
-    .area_view img {
-        border-radius: 10px;
-        pointer-events: none;
     }
 
     @media (max-width: 580px) {
@@ -165,6 +174,10 @@
         background-size: cover;
         border-radius: 3px;
     }
+
+    body {
+        background-color: #f9f9f9;
+    }
 </style>
 
 <script>
@@ -188,7 +201,7 @@
                                         <div class="card-body">
                                             <blockquote class="blockquote mb-0">
                                                 <p>${comment}</p>
-                                                <footer class="blockquote-footer">${name}</footer>
+                                                <footer class="blockquote-footer"style="margin-top: 15px">${name}</footer>
                                             </blockquote>
                                             <div class="mybtn">
                                                 <button type="button" class="btn btn-secondary" onclick="delete_comment('${name}')">삭제</button>
@@ -207,7 +220,7 @@
         $.ajax({
             type: 'POST',
             url: '/comments',
-            data: { name_give: name, comment_give: comment },
+            data: {name_give: name, comment_give: comment},
             success: function (response) {
                 alert(response['msg'])
                 window.location.reload()
@@ -219,7 +232,7 @@
         $.ajax({
             type: 'POST',
             url: '/comments/delete',
-            data: { name_give: name },
+            data: {name_give: name},
             success: function (response) {
                 alert(response['msg']);
                 window.location.reload()
@@ -256,54 +269,64 @@
     })
 </script>
 
-<body>
-    <div class="post">
-        <div class="main">
-            <h1>소통하는 개발자가 되고 싶은 소심한 ENFP</h1>
-        </div>
-        <div class="mypost" id="grid">
-            <div class="img">
-                <img id="porfile-img"
-                    src="https://firebasestorage.googleapis.com/v0/b/assignment-6c963.appspot.com/o/wewe1.png?alt=media&token=648e472b-f82b-4da9-a194-44b662bcb173">
-                <div class="name">Seowoo</div>
-                <footer class="blog" id="aside">
-                    <a class="vel" href="https://velog.io/@5w31892p" target="_blank"> </a>
-                    <a class="git" href="https://github.com/5w31892p" target="_blank"> </a>
-                    <a href="#" class="play"> </a>
-                </footer>
-            </div>
-            <div class="desc">
-                <p style="font-weight: bold; font-size: 20px">안녕하세요. 비전공자로 개발자의 꿈을 꾸는 박서우입니다!</p>
-                <p>
-                    ENFP는 재기 발랄한 활동가로 알려져 있지만<br>
-                    저는 소심하고 낯을 많이 가리는 ENFP입니다😥<br>
-                    그래서 소심하고 낯을 많이 가리지만 친해지면 뭘 하든 간에 성장에 초점을 많이 두는 편이라<br>
-                    내가 알고 있는 지식을 타인이 필요로 한다면 공유하여 다 같이 잘되면 좋지라는 생각을 많이 하는 편입니다.<br>
-                    어떻게 보면 오지랖처럼 보일 수도 있지만 이러한 부분이 제 장점이고,<br>
-                    이 장점이 협업을 하는 과정에서 서로 도우며 같이 성장할 수 있는 부분이라 생각합니다.
-                </p>
-                <p>앞으로 남은기간 잘 부탁드립니다!</p>
-            </div>
-        </div>
-        <button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">방명록 남기기</button>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 
-        <div class="guest" id="guest" style="background-color: ghostwhite">
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="name" placeholder="name@example.com">
-                <label for="name">닉네임</label>
+<div class="main">
+    <h1>소통하는 개발자가 되고 싶은 소심한 ENFP</h1>
+</div>
+<div class="mypost" id="grid">
+    <div class="img">
+        <img id="porfile-img"
+             src="https://firebasestorage.googleapis.com/v0/b/assignment-6c963.appspot.com/o/wewe1.png?alt=media&token=648e472b-f82b-4da9-a194-44b662bcb173">
+        <div class="name">Seowoo</div>
+        <footer class="blog" id="aside">
+            <a class="vel" href="https://velog.io/@5w31892p" target="_blank"> </a>
+            <a class="git" href="https://github.com/5w31892p" target="_blank"> </a>
+            <a href="#" class="play"> </a>
+        </footer>
+    </div>
+    <div class="desc">
+        <p style="font-weight: bold; font-size: 20px">안녕하세요. 비전공자로 개발자의 꿈을 꾸는 박서우입니다!</p>
+        <p>
+            ENFP는 재기 발랄한 활동가로 알려져 있지만<br>
+            저는 소심하고 낯을 많이 가리는 ENFP입니다😥<br>
+            그래서 소심하고 낯을 많이 가리지만 친해지면 뭘 하든 간에 성장에 초점을 많이 두는 편이라<br>
+            내가 알고 있는 지식을 타인이 필요로 한다면 공유하여 다 같이 잘되면 좋지라는 생각을 많이 하는 편입니다.<br>
+            어떻게 보면 오지랖처럼 보일 수도 있지만 이러한 부분이 제 장점이고,<br>
+            이 장점이 협업을 하는 과정에서 서로 도우며 같이 성장할 수 있는 부분이라 생각합니다.
+        </p>
+        <p>앞으로 남은기간 잘 부탁드립니다!</p>
+    </div>
+</div>
+<button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">방명록 남기기</button>
+
+<div class="guest" id="guest" style="background-color: ghostwhite">
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="name" placeholder="name@example.com">
+        <label for="name">닉네임</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
+        <label for="comment">남기고 싶은 말</label>
+    </div>
+    <div class="mybtns">
+        <button type="button" class="btn btn-secondary" onclick="save_comment()">방명록 남기기</button>
+        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+    </div>
+</div>
+<div class="guest-note" id="cards">
+    <div class="card" style="background-color: ghostwhite">
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>랄랄라</p>
+                <footer class="blockquote-footer">이름</footer>
+            </blockquote>
+            <div class="mybtn">
+                <button type="button" class="btn btn-secondary" onclick="delete_comment('${name}')">삭제</button>
             </div>
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
-                <label for="comment">남기고 싶은 말</label>
-            </div>
-            <div class="mybtns">
-                <button type="button" class="btn btn-secondary" onclick="save_comment()">방명록 남기기</button>
-                <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-            </div>
-        </div>
-        <div class="guest-note" id="cards">
         </div>
     </div>
+</div>
 </body>
 
 </html>
