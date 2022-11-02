@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anony mous"></script>
+
+    <title>미니 프로젝트</title>
+        <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+        <style>
+            * {
+                font-family: 'Yeon Sung', cursive;
+            }
+        .mypic {
+            width: 100%;
+            height: 300px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://firebasestorage.googleapis.com/v0/b/assignment-6c963.appspot.com/o/IMG_0039.JPG?alt=media&token=1fe3e52d-9248-4917-8dd5-4ee800d8e8a4');
+            background-position: center 39%;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mypost {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+        }
+
+        .mypost > button {
+            margin-top: 15px;
+        }
+
+        .mycards {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .mycards > .card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .mypic > button {
+            width: 200px;
+            height: 50px;
+
+            background-color: transparent;
+            color: white;
+
+            border-radius: 50px;
+            border: 1px solid white;
+
+            margin-top: 10px;
+        }
+         .mypic > button:hover {
+             border: 2px solid white;
+         }
+         .myinfo {
+             padding: 30px;
+         }
+
+    </style>
+     <script>
+         function open_box(){
+            $('#comment-box').show()
+        }
+        function close_box(){
+            $('#comment-box').hide()
+        }
+        $(document).ready(function () {
+            show_comment();
+        });
+        function save_comment() {
+            let name = $('#name').val()
+            let comment = $('#comment').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/miniproject",
+                data: {'name_give':name, 'comment_give':comment},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+        function show_comment() {
+            $('#comment-list').empty()
+            $.ajax({
+                type: "GET",
+                url: "/miniproject",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    let rows = response['comments']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let comment = rows[i]['comment']
+
+                        let temp_html = `<div class="card">
+                                            <div class="card-body">
+                                                <blockquote class="blockquote mb-0">
+                                                    <p>${comment}</p>
+                                                    <footer class="blockquote-footer">${name}</footer>
+                                                    <button onclick="deleteComment('${name}')" type="button" class="btn btn-dark">삭제</button>
+                                                </blockquote>
+                                            </div>
+                                        </div>`
+                        $('#comment-list').append(temp_html)
+                    }
+                }
+            });
+        }
+        function deleteComment(name) {
+                $.ajax({
+                    type: 'POST',
+                    url: "/delete/miniproject",
+                    data: {name_give:name},
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload()
+                    }
+                });
+            }
+
+    </script>
+</head>
+<body>
+    <div class="mypic">
+        <h1>손혜은</h1>
+        <button onclick="open_box()">방명록 남기기</button>
+    </div>
+     <div class="myinfo">
+        <h2>팀원 소개</h2>
+        <h5>
+            안녕하세요, 팀 ’4조인데 3조였습니다’의 손 혜은입니다. 저의 MBTI는 용감한 수호자 ISFJ입니다. 협업할 때 다른 팀원들의 의견을 먼저 듣고 의견을 내는 편이고 좋은 게 좋은 거라고 갈등보다는 이견을 조율하려고 하고,
+            비록 앞장서서 주도적으로 상황을 끌어가진 않지만, 역할이 크든 작든 저에게 주어진 일이라면 최선을 다하고 만약 제가 필요한 부분이 있다면 조금이라도 더 도움이 되려고 노력하는 스타일입니다.
+            스스로 생각하는 저의 장점은 성실함입니다. 시간이 걸릴지라도 포기하지 않고 꾸준하게 해나가기에 저의 큰 장점인 것 같습니다.
+        </h5>
+     </div>
+    <div class="mypost" id="comment-box">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" placeholder="url">
+            <label for="name">닉네임</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                style="height: 100px"></textarea>
+            <label for="comment">남기고 싶은 말</label>
+        </div>
+        <button onclick="save_comment()" type="button" class="btn btn-dark">방명록 남기기</button>
+        <button onclick="close_box()" type="button" class="btn btn-dark">닫기</button>
+
+    </div>
+    <div class="mycards" id="comment-list">
+    </div>
+</body>
+</html>
