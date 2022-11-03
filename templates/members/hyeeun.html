@@ -90,11 +90,12 @@
         function save_comment() {
             let name = $('#name').val();
             let comment = $('#comment').val();
+            let member = location.search.split('?')[1]
             console.log(name, comment)
              $.ajax({
                 type: "POST",
                 url: "/comments",
-                data: {'name_give':name, 'comment_give':comment},
+                data: {'name_give':name, 'comment_give':comment, member_give: member},
                 success: function (response) {
                     alert(response["msg"])
                     window.location.reload()
@@ -113,7 +114,8 @@
                     for (let i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let comment = rows[i]['comment']
-
+                        let member = rows[i]['member']
+                        if (member === location.search.split('?')[1] ) {
                         let temp_html = `<div class="card">
                                             <div class="card-body">
                                                 <blockquote class="blockquote mb-0">
@@ -124,6 +126,7 @@
                                             </div>
                                         </div>`
                         $('#comment-list').append(temp_html)
+                            }
                     }
                 }
             });
