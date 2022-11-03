@@ -25,7 +25,7 @@
     }
 
     .top {
-        width: 102;
+        width: 100%;
         height: 235px;
         place-items: center;
         background-color: #fbfbfb;
@@ -79,7 +79,7 @@
     }
 
     .members h5 {
-        font-size: large;
+        font-size: 22px;
         font-weight: bold;
         text-align: center;
     }
@@ -94,8 +94,8 @@
     }
 
     .vel {
-        width: 20px;
-        height: 20px;
+        width: 35px;
+        height: 35px;
         background-image: url("https://pbs.twimg.com/profile_images/1228368893321736193/Ov0og7E8_400x400.jpg");
         background-position: center;
         background-size: cover;
@@ -104,8 +104,8 @@
     }
 
     .git {
-        width: 20px;
-        height: 20px;
+        width: 35px;
+        height: 35px;
         background-image: url("https://cdn-icons-png.flaticon.com/512/5968/5968866.png");
         background-position: center;
         background-size: cover;
@@ -122,7 +122,7 @@
         font-weight: bold;
     }
 
-    .guest {
+    #guest {
         width: 95%;
         max-width: 700px;
         margin: auto auto 40px auto;
@@ -170,23 +170,24 @@
 
 
 </style>
+
 <script>
     $(document).ready(function () {
         show_comment()
     })
 
     function show_comment() {
-        $('#guest-note').empty()
+        $('#cards').empty()
         $.ajax({
             type: "GET",
             url: "/comments",
             data: {},
             success: function (response) {
-                console.log(response)
-                let rows = response['comments']
-                for (let i = 0; i < rows.length; i++) {
-                    let name = rows[i]['name']
-                    let comment = rows[i]['comment']
+                let comments = response['comments']
+                for (let i = 0; i < comments.length; i++) {
+                    let name = comments[i]['name']
+                    let comment = comments[i]['comment']
+                    console.log(name, comment)
 
                     let temp_html = `<div class="card" style="background-color: ghostwhite">
                                         <div class="card-body">
@@ -199,187 +200,153 @@
                                             </div>
                                         </div>
                                     </div>`
-                    $('#guest-note').append(temp_html)
+                    $('#cards').append(temp_html);
                 }
             }
+        })
+    }
 
-
-        </style>
-        <script>
-            $(document).ready(function () {
-                show_comment()
-            })
-
-            function show_comment() {
-                $('#cards').empty()
-                $.ajax({
-                    type: "GET",
-                    url: "/comments",
-                    data: {},
-                    success: function (response) {
-                        let comments = response['all_comment']
-                        for (let i = 0; i < comments.length; i++) {
-                            let name = comments[i]['name']
-                            let comment = comments[i]['comment']
-
-                            let temp_html = `<div class="card" style="background-color: ghostwhite">
-                                                <div class="card-body">
-                                                    <blockquote class="blockquote mb-0">
-                                                        <p>${comment}</p>
-                                                        <footer class="blockquote-footer">${name}</footer>
-                                                    </blockquote>
-                                                    <div class="mybtn">
-                                                        <button type="button" class="btn btn-secondary" onclick="delete_comment('${name}')">삭제</button>
-                                                    </div>
-                                                </div>
-                                            </div>`
-                            $('#cards').append(temp_html);
-                        }
-                    }
-                })
+    function save_comment() {
+        let name = $('#name').val();
+        let comment = $('#comment').val();
+        $.ajax({
+            type: 'POST',
+            url: '/comments',
+            data: {name_give: name, comment_give: comment},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
             }
+        })
+    }
 
-            function save_comment() {
-                let name = $('#name').val();
-                let comment = $('#comment').val();
-                $.ajax({
-                    type: 'POST',
-                    url: '/comments',
-                    data: {name_give: name, comment_give: comment},
-                    success: function (response) {
-                        alert(response['msg'])
-                        window.location.reload()
-                    }
-                })
+    function delete_comment(name) {
+        $.ajax({
+            type: 'POST',
+            url: '/comments/delete',
+            data: {name_give: name},
+            success: function (response) {
+                alert(response['msg']);
+                window.location.reload()
             }
+        })
+    }
 
-            function delete_comment(name) {
-                $.ajax({
-                    type: 'POST',
-                    url: '/comments/delete',
-                    data: {name_give: name},
-                    success: function (response) {
-                        alert(response['msg']);
-                        window.location.reload()
-                    }
-                })
-            }
+    function open_box() {
+        $('#guest').show()
+    }
 
-            function open_box() {
-                $('#guest').show()
-            }
+    function close_box() {
+        $('#guest').hide()
+    }
+</script>
 
-            function close_box() {
-                $('#guest').hide()
-            }
-        </script>
+<body>
 
-        <body>
+<div class="top">
+</div>
+<div class="teampost">
+    <h3>4조였지만 3조인 우리 팀은?</h3>
+    <p class="which">개발자가 되겠다는 같은 마음으로 모여 누구보다 열심히 노력하는 팀</p>
 
-        <div class="top">
-        </div>
-        <div class="teampost">
-            <h3>4조였지만 3조인 우리 팀은?</h3>
-            <p class="which">개발자가 되겠다는 같은 마음으로 모여 누구보다 열심히 노력하는 팀</p>
-
-            <div class="members" id="members">
-                <div class="row row-cols-1 row-cols-md-5 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <a href="/members?name=seowoo">
-                            <img src="https://ifh.cc/g/N8CndF.jpg"
-                                class="card-img-top" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">박서우 ENFP</h5>
-                                <div class="blog">
-                                    <a class="vel" href="https://velog.io/@5w31892p" target="_blank"> </a>
-                                    <a class="git" href="https://github.com/5w31892p" target="_blank"> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <a href="/members?name=hyunjin">
-                            <img src="https://ifh.cc/g/jLyJDx.jpg"
-                                 class="card-img-top" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">손현진 ESTJ</h5>
-                                <div class="blog">
-                                    <a class="vel" href="https://velog.io/@dksjejrl123" target="_blank"> </a>
-                                    <a class="git" href="https://github.com/SonHyeunJin" target="_blank"> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <a href="/members?name=hyeeun">
-                            <img src="https://ifh.cc/g/Jf0aRA.jpg"
-                                 class="card-img-top" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">손혜은 ISFJ</h5>
-                                <div class="blog">
-                                    <a class="vel" href="https://velog.io/@she9742" target="_blank"> </a>
-                                    <a class="git" href="https://github.com/she9742" target="_blank"> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <a href="/members?name=taehoon">
-                            <img src="https://ifh.cc/g/8vJbJn.jpgg"
-                                 class="card-img-top" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">김태훈 INPF</h5>
-                                <div class="blog">
-                                       <a class="vel" href="https://mitoconcrete.github.io" target="_blank"> </a>
-                                      <a class="git" href="https://github.com/mitoconcrete" target="_blank"> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <a href="/members?name=jaewon">
-                            <img src="https://ifh.cc/g/7f4N8T.jpg"
-                                 class="card-img-top" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">이재원 ISTJ</h5>
-                                <div class="blog">
-                                    <a class="vel" href="https://velog.io/@ljwon1203" target="_blank"> </a>
-                                    <a class="git" href="https://github.com/ljwon1203" target="_blank"> </a>
-                                </div>
-                            </div>
+    <div class="members" id="members">
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="col">
+                <div class="card">
+                    <a href="/members?name=seowoo">
+                        <img src="https://ifh.cc/g/N8CndF.jpg"
+                             class="card-img-top" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">박서우 ENFP</h5>
+                        <div class="blog">
+                            <a class="vel" href="https://velog.io/@5w31892p" target="_blank"> </a>
+                            <a class="git" href="https://github.com/5w31892p" target="_blank"> </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="team" id="grid">
-                <div class="t1">
-                    <h5>우리팀의 약속</h5>
-                    <p>✔ 다 같이 물어보고 알려주면서 성장하기</p>
-                    <p>✔ 서로 존중하고 매너있게 말하기</p>
-                    <p>✔ 적극적인 자세로 배우면서 임하여 하루 하나 이상은 배워가기</p>
+            <div class="col">
+                <div class="card">
+                    <a href="/members?name=hyunjin">
+                        <img src="https://ifh.cc/g/jLyJDx.jpg"
+                             class="card-img-top" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">손현진 ESTJ</h5>
+                        <div class="blog">
+                            <a class="vel" href="https://velog.io/@dksjejrl123" target="_blank"> </a>
+                            <a class="git" href="https://github.com/SonHyeunJin" target="_blank"> </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="t2">
-                    <h5>우리팀의 특징</h5>
-                    <p>✔ 애완견, 반려묘와 함께하는 팀원들이 많음</p>
-                    <p>✔ 조용하지만 서로 믿고 최선을 다하며 각자 할 일을 아주 잘함</p>
-                    <p>✔ 9 to 9은 여유롭게 가능한 무거운 엉덩이를 가진 팀</p>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <a href="/members?name=hyeeun">
+                        <img src="https://ifh.cc/g/Jf0aRA.jpg"
+                             class="card-img-top" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">손혜은 ISFJ</h5>
+                        <div class="blog">
+                            <a class="vel" href="https://velog.io/@she9742" target="_blank"> </a>
+                            <a class="git" href="https://github.com/she9742" target="_blank"> </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="t3">
-                    <h5>추구하는 목표</h5>
-                    <p>✔ 어제보다 성장한 내일의 나</p>
-                    <p>✔ 1인분 몫은 확실히 하는 개발자가 되어서 추후에는 웃으며 만날 수 있길!!</p>
-                    <p>✔ 수료하는 날까지 중도포기 없이 최상의 결과를 낼 수 있도록 끝까지 완주!!!</p>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <a href="/members?name=taehoon">
+                        <img src="https://ifh.cc/g/8vJbJn.jpgg"
+                             class="card-img-top" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">김태훈 INPF</h5>
+                        <div class="blog">
+                            <a class="vel" href="https://mitoconcrete.github.io" target="_blank"> </a>
+                            <a class="git" href="https://github.com/mitoconcrete" target="_blank"> </a>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <a href="/members?name=jaewon">
+                        <img src="https://ifh.cc/g/7f4N8T.jpg"
+                             class="card-img-top" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">이재원 ISTJ</h5>
+                        <div class="blog">
+                            <a class="vel" href="https://velog.io/@ljwon1203" target="_blank"> </a>
+                            <a class="git" href="https://github.com/ljwon1203" target="_blank"> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="team" id="grid">
+        <div class="t1">
+            <h5>우리팀의 약속</h5>
+            <p>✔ 다 같이 물어보고 알려주면서 성장하기</p>
+            <p>✔ 서로 존중하고 매너있게 말하기</p>
+            <p>✔ 적극적인 자세로 배우면서 임하여 하루 하나 이상은 배워가기</p>
+        </div>
+        <div class="t2">
+            <h5>우리팀의 특징</h5>
+            <p>✔ 애완견, 반려묘와 함께하는 팀원들이 많음</p>
+            <p>✔ 조용하지만 서로 믿고 최선을 다하며 각자 할 일을 아주 잘함</p>
+            <p>✔ 9 to 9은 여유롭게 가능한 무거운 엉덩이를 가진 팀</p>
+        </div>
+        <div class="t3">
+            <h5>추구하는 목표</h5>
+            <p>✔ 어제보다 성장한 내일의 나</p>
+            <p>✔ 1인분 몫은 확실히 하는 개발자가 되어서 추후에는 웃으며 만날 수 있길!!</p>
+            <p>✔ 수료하는 날까지 중도포기 없이 최상의 결과를 낼 수 있도록 끝까지 완주!!!</p>
+        </div>
 
     </div>
 </div>
@@ -399,7 +366,8 @@
         <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
     </div>
 </div>
-<div id="guest-note"></div>
+<div id="guest-note" id="cards">
+</div>
 
 </body>
 
