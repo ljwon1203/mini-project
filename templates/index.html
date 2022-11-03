@@ -187,9 +187,10 @@
                 for (let i = 0; i < comments.length; i++) {
                     let name = comments[i]['name']
                     let comment = comments[i]['comment']
-                    console.log(name, comment)
 
-                    let temp_html = `<div class="card" style="background-color: ghostwhite">
+                    console.log(name, comment)
+                    if (member === 'main') {
+                        let temp_html = `<div class="card" style="background-color: ghostwhite">
                                         <div class="card-body">
                                             <blockquote class="blockquote mb-0">
                                                 <p>${comment}</p>
@@ -201,6 +202,8 @@
                                         </div>
                                     </div>`
                     $('#cards').append(temp_html);
+                    }
+
                 }
             }
         })
@@ -209,10 +212,11 @@
     function save_comment() {
         let name = $('#name').val();
         let comment = $('#comment').val();
+        let member = 'main'
         $.ajax({
             type: 'POST',
             url: '/comments',
-            data: {name_give: name, comment_give: comment},
+            data: {name_give: name, comment_give: comment, member_give: member},
             success: function (response) {
                 alert(response['msg'])
                 window.location.reload()
@@ -366,7 +370,7 @@
         <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
     </div>
 </div>
-<div id="guest-note" id="cards">
+<div id="cards">
 </div>
 
 </body>
