@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
     <title>4조였지만 3조입니다.</title>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
@@ -142,7 +142,7 @@
         margin-top: 20px;
     }
 
-    .mybtns > button {
+    .mybtns>button {
         margin-right: 10px;
     }
 
@@ -167,8 +167,6 @@
             display: block;
         }
     }
-
-
 </style>
 
 <script>
@@ -187,8 +185,8 @@
                 for (let i = 0; i < comments.length; i++) {
                     let name = comments[i]['name']
                     let comment = comments[i]['comment']
+                    let member = comments[i]['member']
 
-                    console.log(name, comment)
                     if (member === 'main') {
                         let temp_html = `<div class="card" style="background-color: ghostwhite">
                                         <div class="card-body">
@@ -201,7 +199,7 @@
                                             </div>
                                         </div>
                                     </div>`
-                    $('#cards').append(temp_html);
+                        $('#cards').append(temp_html);
                     }
 
                 }
@@ -216,7 +214,7 @@
         $.ajax({
             type: 'POST',
             url: '/comments',
-            data: {name_give: name, comment_give: comment, member_give: member},
+            data: { name_give: name, comment_give: comment, member_give: member },
             success: function (response) {
                 alert(response['msg'])
                 window.location.reload()
@@ -228,7 +226,7 @@
         $.ajax({
             type: 'POST',
             url: '/comments/delete',
-            data: {name_give: name},
+            data: { name_give: name },
             success: function (response) {
                 alert(response['msg']);
                 window.location.reload()
@@ -247,131 +245,126 @@
 
 <body>
 
-<div class="top">
-</div>
-<div class="teampost">
-    <h3>4조였지만 3조인 우리 팀은?</h3>
-    <p class="which">개발자가 되겠다는 같은 마음으로 모여 누구보다 열심히 노력하는 팀</p>
+    <div class="top">
+    </div>
+    <div class="teampost">
+        <h3>4조였지만 3조인 우리 팀은?</h3>
+        <p class="which">개발자가 되겠다는 같은 마음으로 모여 누구보다 열심히 노력하는 팀</p>
 
-    <div class="members" id="members">
-        <div class="row row-cols-1 row-cols-md-5 g-4">
-            <div class="col">
-                <div class="card">
-                    <a href="/members?name=seowoo">
-                        <img src="https://ifh.cc/g/N8CndF.jpg"
-                             class="card-img-top" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">박서우 ENFP</h5>
-                        <div class="blog">
-                            <a class="vel" href="https://velog.io/@5w31892p" target="_blank"> </a>
-                            <a class="git" href="https://github.com/5w31892p" target="_blank"> </a>
+        <div class="members" id="members">
+            <div class="row row-cols-1 row-cols-md-5 g-4">
+                <div class="col">
+                    <div class="card">
+                        <a href="/members?name=seowoo">
+                            <img src="https://ifh.cc/g/N8CndF.jpg" class="card-img-top" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">박서우 ENFP</h5>
+                            <div class="blog">
+                                <a class="vel" href="https://velog.io/@5w31892p" target="_blank"> </a>
+                                <a class="git" href="https://github.com/5w31892p" target="_blank"> </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <a href="/members?name=hyunjin">
-                        <img src="https://ifh.cc/g/jLyJDx.jpg"
-                             class="card-img-top" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">손현진 ESTJ</h5>
-                        <div class="blog">
-                            <a class="vel" href="https://velog.io/@dksjejrl123" target="_blank"> </a>
-                            <a class="git" href="https://github.com/SonHyeunJin" target="_blank"> </a>
+                <div class="col">
+                    <div class="card">
+                        <a href="/members?name=hyunjin">
+                            <img src="https://ifh.cc/g/jLyJDx.jpg" class="card-img-top" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">손현진 ESTJ</h5>
+                            <div class="blog">
+                                <a class="vel" href="https://velog.io/@dksjejrl123" target="_blank"> </a>
+                                <a class="git" href="https://github.com/SonHyeunJin" target="_blank"> </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <a href="/members?name=hyeeun">
-                        <img src="https://ifh.cc/g/Jf0aRA.jpg"
-                             class="card-img-top" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">손혜은 ISFJ</h5>
-                        <div class="blog">
-                            <a class="vel" href="https://velog.io/@she9742" target="_blank"> </a>
-                            <a class="git" href="https://github.com/she9742" target="_blank"> </a>
+                <div class="col">
+                    <div class="card">
+                        <a href="/members?name=hyeeun">
+                            <img src="https://ifh.cc/g/Jf0aRA.jpg" class="card-img-top" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">손혜은 ISFJ</h5>
+                            <div class="blog">
+                                <a class="vel" href="https://velog.io/@she9742" target="_blank"> </a>
+                                <a class="git" href="https://github.com/she9742" target="_blank"> </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <a href="/members?name=taehoon">
-                        <img src="https://ifh.cc/g/8vJbJn.jpgg"
-                             class="card-img-top" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">김태훈 INPF</h5>
-                        <div class="blog">
-                            <a class="vel" href="https://mitoconcrete.github.io" target="_blank"> </a>
-                            <a class="git" href="https://github.com/mitoconcrete" target="_blank"> </a>
+                <div class="col">
+                    <div class="card">
+                        <a href="/members?name=taehoon">
+                            <img src="https://ifh.cc/g/8vJbJn.jpgg" class="card-img-top" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">김태훈 INPF</h5>
+                            <div class="blog">
+                                <a class="vel" href="https://mitoconcrete.github.io" target="_blank"> </a>
+                                <a class="git" href="https://github.com/mitoconcrete" target="_blank"> </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <a href="/members?name=jaewon">
-                        <img src="https://ifh.cc/g/7f4N8T.jpg"
-                             class="card-img-top" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">이재원 ISTJ</h5>
-                        <div class="blog">
-                            <a class="vel" href="https://velog.io/@ljwon1203" target="_blank"> </a>
-                            <a class="git" href="https://github.com/ljwon1203" target="_blank"> </a>
+                <div class="col">
+                    <div class="card">
+                        <a href="/members?name=jaewon">
+                            <img src="https://ifh.cc/g/7f4N8T.jpg" class="card-img-top" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">이재원 ISTJ</h5>
+                            <div class="blog">
+                                <a class="vel" href="https://velog.io/@ljwon1203" target="_blank"> </a>
+                                <a class="git" href="https://github.com/ljwon1203" target="_blank"> </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="team" id="grid">
-        <div class="t1">
-            <h5>우리팀의 약속</h5>
-            <p>✔ 다 같이 물어보고 알려주면서 성장하기</p>
-            <p>✔ 서로 존중하고 매너있게 말하기</p>
-            <p>✔ 적극적인 자세로 배우면서 임하여 하루 하나 이상은 배워가기</p>
-        </div>
-        <div class="t2">
-            <h5>우리팀의 특징</h5>
-            <p>✔ 애완견, 반려묘와 함께하는 팀원들이 많음</p>
-            <p>✔ 조용하지만 서로 믿고 최선을 다하며 각자 할 일을 아주 잘함</p>
-            <p>✔ 9 to 9은 여유롭게 가능한 무거운 엉덩이를 가진 팀</p>
-        </div>
-        <div class="t3">
-            <h5>추구하는 목표</h5>
-            <p>✔ 어제보다 성장한 내일의 나</p>
-            <p>✔ 1인분 몫은 확실히 하는 개발자가 되어서 추후에는 웃으며 만날 수 있길!!</p>
-            <p>✔ 수료하는 날까지 중도포기 없이 최상의 결과를 낼 수 있도록 끝까지 완주!!!</p>
-        </div>
+        <div class="team" id="grid">
+            <div class="t1">
+                <h5>우리팀의 약속</h5>
+                <p>✔ 다 같이 물어보고 알려주면서 성장하기</p>
+                <p>✔ 서로 존중하고 매너있게 말하기</p>
+                <p>✔ 적극적인 자세로 배우면서 임하여 하루 하나 이상은 배워가기</p>
+            </div>
+            <div class="t2">
+                <h5>우리팀의 특징</h5>
+                <p>✔ 애완견, 반려묘와 함께하는 팀원들이 많음</p>
+                <p>✔ 조용하지만 서로 믿고 최선을 다하며 각자 할 일을 아주 잘함</p>
+                <p>✔ 9 to 9은 여유롭게 가능한 무거운 엉덩이를 가진 팀</p>
+            </div>
+            <div class="t3">
+                <h5>추구하는 목표</h5>
+                <p>✔ 어제보다 성장한 내일의 나</p>
+                <p>✔ 1인분 몫은 확실히 하는 개발자가 되어서 추후에는 웃으며 만날 수 있길!!</p>
+                <p>✔ 수료하는 날까지 중도포기 없이 최상의 결과를 낼 수 있도록 끝까지 완주!!!</p>
+            </div>
 
+        </div>
     </div>
-</div>
-<button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">응원하기</button>
+    <button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">응원하기</button>
 
-<div class="guest" id="guest" style="background-color: ghostwhite">
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="name" placeholder="name@example.com">
-        <label for="name">닉네임</label>
+    <div class="guest" id="guest" style="background-color: ghostwhite">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="name" placeholder="name@example.com">
+            <label for="name">닉네임</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
+            <label for="comment">남기고 싶은 말</label>
+        </div>
+        <div class="mybtns">
+            <button type="button" class="btn btn-secondary" onclick="save_comment()">응원 남기기</button>
+            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+        </div>
     </div>
-    <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
-        <label for="comment">남기고 싶은 말</label>
+    <div id="cards">
     </div>
-    <div class="mybtns">
-        <button type="button" class="btn btn-secondary" onclick="save_comment()">응원 남기기</button>
-        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-    </div>
-</div>
-<div id="cards">
-</div>
 
 </body>
 
