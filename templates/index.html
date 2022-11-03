@@ -176,16 +176,17 @@
     })
 
     function show_comment() {
-        $('#cards').empty()
+        $('#guest-note').empty()
         $.ajax({
             type: "GET",
             url: "/comments",
             data: {},
             success: function (response) {
-                let comments = response['all_comment']
-                for (let i = 0; i < comments.length; i++) {
-                    let name = comments[i]['name']
-                    let comment = comments[i]['comment']
+                console.log(response)
+                let rows = response['comments']
+                for (let i = 0; i < rows.length; i++) {
+                    let name = rows[i]['name']
+                    let comment = rows[i]['comment']
 
                     let temp_html = `<div class="card" style="background-color: ghostwhite">
                                         <div class="card-body">
@@ -198,7 +199,7 @@
                                             </div>
                                         </div>
                                     </div>`
-                    $('#cards').append(temp_html);
+                    $('#guest-note').append(temp_html)
                 }
             }
         })
@@ -354,7 +355,7 @@
         <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
     </div>
 </div>
-<div class="guest-note"></div>
+<div id="guest-note"></div>
 
 </body>
 
