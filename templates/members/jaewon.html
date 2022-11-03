@@ -136,6 +136,7 @@
                                                     <footer class="blockquote-footer">${name}</footer>
                                                 </blockquote>
                                             </div>
+                                            <button onclick="delete_comment(${name})" type="button" class="btn btn-primary">방명록 삭제</button>
                                         </div>`
                             $('#comment-list').append(temp_html)
 
@@ -148,9 +149,7 @@
             });
         }
 
-        function delete_comment() {
-
-            let name = $('#name').val()
+        function delete_comment(name) {
             $.ajax({
                 type: 'POST',
                 url: '/comments/delete',
@@ -253,7 +252,6 @@
                         </div>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                         <button onclick="save_comment()" type="button" class="btn btn-primary">방명록 등록</button>
-                        <button onclick="delete_comment()" type="button" class="btn btn-primary">방명록 삭제</button>
                     </div>
                 </div>
             </div>
