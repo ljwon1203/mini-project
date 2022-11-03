@@ -32,3 +32,4 @@ ex) http://localhost:5000/~~~
 - 현진 : /members?name=hyunjin
 - 혜은 : /members?name=hyeeun
 - 재원 : /members?name=jaewon
+- 태훈 : /members?name=taehoon
