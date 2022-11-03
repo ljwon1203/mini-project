@@ -252,10 +252,11 @@
         function save_comment() {
             const name = $('#name').val();
             const comment = $('#comment').val();
+            const member = location.search.split('?')[1]
             $.ajax({
                 type: 'POST',
                 url: '/comments',
-                data: { name_give: name, comment_give: comment },
+                data: { name_give: name, comment_give: comment, member_give: member },
                 success: function (response) {
                     $('#name').val('');
                     $('#comment').val('');
@@ -275,8 +276,10 @@
                     const { comments } = response;
                     let templates = ''
                     for (let comment_data of comments) {
-                        const { name, comment } = comment_data;
+                        const { name, comment, member } = comment_data;
+                        if (member === location.search.split('?')[1] ) {
                         templates += `<div class="card">
+
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
                     <p>${comment}</p>
@@ -292,6 +295,7 @@
 
                     $('#comment-list').empty();
                     $('#comment-list').append(templates)
+                }
                 }
             });
         }

@@ -3,7 +3,9 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-client = MongoClient('몽고db url')
+
+client = MongoClient('db')
+
 db = client.dbsparta
 
 '''
@@ -33,12 +35,17 @@ def get_comments():
 def post_comments():
     name_receive = request.form['name_give']
     comment_receive = request.form["comment_give"]
+    # 멤버추가
+    member_receive = request.form["member_give"]
+
 
     doc = {
         'name': name_receive,
-        'comment': comment_receive
+        'comment': comment_receive,
+        # 멤버추가
+        'member': member_receive
     }
-
+    print(doc)
     db.comments.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
