@@ -38,6 +38,8 @@ def post_comments():
     # 멤버추가
     member_receive = request.form["member_give"]
 
+    if not name_receive or not comment_receive:
+        return jsonify({'msg': '하나라도 빼먹으면 안되요'})
 
     doc = {
         'name': name_receive,
@@ -45,7 +47,6 @@ def post_comments():
         # 멤버추가
         'member': member_receive
     }
-    print(doc)
     db.comments.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
