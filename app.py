@@ -53,6 +53,7 @@ def post_comments():
 # 3. comments DELETE
 @app.route("/comments/delete", methods=["POST"])
 def delete_comments():
+    
     name_receive = request.form['name_give']
     db.comments.delete_one({"name": name_receive})
     return jsonify({'msg': '삭제 완료!'})
