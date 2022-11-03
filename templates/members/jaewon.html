@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta property="og:title" content="4조였지만 3조입니다" />
-    <meta property="og:description" content="이재원A(A반 4조)를 소개 합니다!" />
+    <meta property="og:description" content="이재원(A반 4조)을 소개 합니다!" />
     <meta property="og:image" content="https://i.ytimg.com/vi/r7EKBoFBy8w/maxresdefault.jpg" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -87,7 +87,6 @@
             height: 300px;
 
         }
-
     </style>
 
     <script>
@@ -102,13 +101,13 @@
             let comment = $('#comment').val()
             let member = location.search.split('?')[1]
 
-                console.log('comment')
+            console.log('comment')
 
             $.ajax({
                 type: 'POST',
                 url: '/comments',
 
-                data: { name_give: name, comment_give: comment, member_give: member},
+                data: { name_give: name, comment_give: comment, member_give: member },
 
                 success: function (response) {
                     console.log(location.search.split('?')[1])
@@ -129,7 +128,7 @@
                         let name = rows[i]['name']
                         let comment = rows[i]['comment']
                         let member = rows[i]['member']
-                        if (member === location.search.split('?')[1] ) {
+                        if (member === location.search.split('?')[1]) {
                             let temp_html = `<div class="card">
                                             <div class="card-body">
                                                 <blockquote class="blockquote mb-0">
@@ -138,7 +137,7 @@
                                                 </blockquote>
                                             </div>
                                         </div>`
-                        $('#comment-list').append(temp_html)
+                            $('#comment-list').append(temp_html)
 
                         }
 
@@ -177,16 +176,18 @@
     <!-- Button trigger modal -->
     <div class="btn1" style="text-align: center;">
         <div>
-        <button style="display: inline-block;" type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop">
-            방명록 남기기
-        </button>
+            <button style="display: inline-block;" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                방명록 남기기
+            </button>
         </div>
 
-            <img class="profile" src="https://ca.slack-edge.com/T043597JK8V-U0453F0GDCG-86847029fba3-512" class="profile" alt="...">
+        <img class="profile" src="https://ca.slack-edge.com/T043597JK8V-U0453F0GDCG-86847029fba3-512" class="profile"
+            alt="...">
 
-            <img class="profile" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20220530_289%2F1653902676040z0b12_JPEG%2Fcar2_069.jpg&type=sc960_832"
-                class="rounded float-end" alt="...">
+        <img class="profile"
+            src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20220530_289%2F1653902676040z0b12_JPEG%2Fcar2_069.jpg&type=sc960_832"
+            class="rounded float-end" alt="...">
 
     </div>
     <div class="wrap">
