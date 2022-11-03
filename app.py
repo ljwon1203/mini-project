@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-client = MongoClient('몽고DBurl')
+client = MongoClient('mongodb+srv://test:sparta@cluster0.obco8e7.mongodb.net/cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
 '''
@@ -33,10 +33,15 @@ def get_comments():
 def post_comments():
     name_receive = request.form['name_give']
     comment_receive = request.form["comment_give"]
+    # 멤버추가
+    # member_receive = request.form["member_receive"]
+
 
     doc = {
         'name': name_receive,
-        'comment': comment_receive
+        'comment': comment_receive,
+        # 멤버추가
+        # 'member': member_receive
     }
 
     db.comments.insert_one(doc)
@@ -51,4 +56,4 @@ def delete_comments():
 
 
 if __name__ == '__main__':
-   app.run('0.0.0.0', port=8000, debug=True)
+   app.run('0.0.0.0', port=5000, debug=True)

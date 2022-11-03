@@ -75,13 +75,22 @@
             text-autospace: none;
         }
 
-        section img {
-            align-content: safe;
-            overflow: auto;
-            margin: 30px 30px;
-            width: 400px;
-            height: 500px;
+        .profile {
+            display: inline-block;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+
+            margin: 10px 10px;
+            width: 300px;
+            height: 300px;
+
         }
+
+        {#body * {#}
+        {#    border: 1px solid red;#}
+        {#}#}
     </style>
 
     <script>
@@ -94,14 +103,18 @@
 
             let name = $('#name').val()
             let comment = $('#comment').val()
+            {#let member = location.search#}
+            {#let member2 =member.split('?')[1]#}
+
 
             $.ajax({
                 type: 'POST',
-                url: '/homework',
+                url: '/comments',
 
-                data: { name_give: name, comment_give: comment },
+                data: { name_give: name, comment_give: comment},
 
                 success: function (response) {
+                    {#console.log(location.search.split('?')[1])#}
                     alert(response['msg'])
                     window.location.reload()
                 }
@@ -111,13 +124,14 @@
         function show_comment() {
             $.ajax({
                 type: "GET",
-                url: "/homework",
+                url: "/comments",
                 data: {},
                 success: function (response) {
                     let rows = response['comments']
                     for (let i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let comment = rows[i]['comment']
+
 
                         let temp_html = `<div class="card">
                                             <div class="card-body">
@@ -138,7 +152,7 @@
             let name = $('#name').val()
             $.ajax({
                 type: 'POST',
-                url: '/homework/delete',
+                url: '/comments/delete',
                 data: { name_give: name },
                 success: function (response) {
                     alert(response['msg']);
@@ -155,19 +169,23 @@
 
 <body>
     <div class="mypic">
-        <h1>이재원A(A반 4조)를 소개 합니다!</h1>
+        <h1>이재원A를 소개 합니다!</h1>
     </div>
     <!--    <button onclick="save_comment()" type="button" class="btn btn-dark">방명록 남기기</button>-->
     <!-- Button trigger modal -->
     <div class="btn1" style="text-align: center;">
+        <div>
         <button style="display: inline-block;" type="button" class="btn btn-primary" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">
             방명록 남기기
         </button>
-        <section>
-            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20220530_289%2F1653902676040z0b12_JPEG%2Fcar2_069.jpg&type=sc960_832"
+        </div>
+
+            <img class="profile" src="https://ca.slack-edge.com/T043597JK8V-U0453F0GDCG-86847029fba3-512" class="profile" alt="...">
+
+            <img class="profile" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20220530_289%2F1653902676040z0b12_JPEG%2Fcar2_069.jpg&type=sc960_832"
                 class="rounded float-end" alt="...">
-        </section>
+
     </div>
     <div class="wrap">
         <div>
