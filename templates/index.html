@@ -1,170 +1,205 @@
-        <!doctype html>
-        <html lang="en">
+<!doctype html>
+<html lang="en">
 
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-                  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                    crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
-            <title>4조였지만 3조입니다.</title>
-            <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-        </head>
-        <style>
-            * {
-                font-family: 'Gowun Dodum', sans-serif;
-            }
+    <title>4조였지만 3조입니다.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        font-family: 'Gowun Dodum', sans-serif;
+    }
 
-            body {
-                background-color: #f9f9f9;
-            }
+    body {
+        background-color: #f9f9f9;
+    }
 
-            .top {
-                width: 102;
-                height: 235px;
-                place-items: center;
-                background-color: #fbfbfb;
+    .top {
+        width: 102;
+        height: 235px;
+        place-items: center;
+        background-color: #fbfbfb;
 
-                background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("/static/완성.gif");
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("/static/완성.gif");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 
-            .teampost {
-                width: 95%;
-                max-width: 1550px;
-                margin: 30px auto 50px auto;
-                box-shadow: 0px 0px 5px 2px #e5e8ea;
-                background-color: ghostwhite;
-                padding: 30px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
+    .teampost {
+        width: 95%;
+        max-width: 1550px;
+        margin: 30px auto 50px auto;
+        box-shadow: 0px 0px 5px 2px #e5e8ea;
+        background-color: ghostwhite;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-            .teampost h3 {
-                font-weight: bold;
-                font-size: 30px;
-                margin-bottom: 25px;
-            }
+    .teampost h3 {
+        font-weight: bold;
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
 
-            .which {
-                font-size: x-large;
-            }
+    .which {
+        font-size: x-large;
+    }
 
-            .team {
-                display: grid;
-                gap: 25px;
-                grid-template-columns: 1fr 1fr 1fr;
-                margin-top: 20px;
-                padding-top: 30px;
-                padding-bottom: 20px;
-            }
+    .team {
+        display: grid;
+        gap: 25px;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-top: 20px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
 
-            .team h5 {
-                font-weight: bold;
-                margin-bottom: 20px;
+    .team h5 {
+        font-weight: bold;
+        margin-bottom: 20px;
 
-            }
+    }
 
-            .members {
-                margin-top: 20px;
-            }
+    .members {
+        margin-top: 20px;
+    }
 
-            .members h5 {
-                font-size: large;
-                font-weight: bold;
-                text-align: center;
-            }
+    .members h5 {
+        font-size: large;
+        font-weight: bold;
+        text-align: center;
+    }
 
-            .blog {
-                display: flex;
-                justify-content: center;
-            }
+    .blog {
+        display: flex;
+        justify-content: center;
+    }
 
-            .blog a {
-                margin: 5px;
-            }
+    .blog a {
+        margin: 5px;
+    }
 
-            .vel {
-                width: 20px;
-                height: 20px;
-                background-image: url("https://pbs.twimg.com/profile_images/1228368893321736193/Ov0og7E8_400x400.jpg");
-                background-position: center;
-                background-size: cover;
+    .vel {
+        width: 20px;
+        height: 20px;
+        background-image: url("https://pbs.twimg.com/profile_images/1228368893321736193/Ov0og7E8_400x400.jpg");
+        background-position: center;
+        background-size: cover;
 
-                border-radius: 3px;
-            }
+        border-radius: 3px;
+    }
 
-            .git {
-                width: 20px;
-                height: 20px;
-                background-image: url("https://cdn-icons-png.flaticon.com/512/5968/5968866.png");
-                background-position: center;
-                background-size: cover;
-            }
+    .git {
+        width: 20px;
+        height: 20px;
+        background-image: url("https://cdn-icons-png.flaticon.com/512/5968/5968866.png");
+        background-position: center;
+        background-size: cover;
+    }
 
-            .posting-btn {
-                max-width: 300px;
-                width: 50%;
-                margin: auto auto 40px auto;
-                display: block;
-                padding: 15px;
-                border-radius: 50px;
-                box-shadow: 0px 0px 5px 2px darkgray;
-                font-weight: bold;
-            }
+    .posting-btn {
+        max-width: 300px;
+        width: 50%;
+        margin: auto auto 40px auto;
+        display: block;
+        padding: 15px;
+        border-radius: 50px;
+        box-shadow: 0px 0px 5px 2px darkgray;
+        font-weight: bold;
+    }
 
-            .guest {
-                width: 95%;
-                max-width: 700px;
-                margin: auto auto 40px auto;
-                box-shadow: 0px 0px 7px 3px #e5e8ea;
-                padding: 25px;
+    .guest {
+        width: 95%;
+        max-width: 700px;
+        margin: auto auto 40px auto;
+        box-shadow: 0px 0px 7px 3px #e5e8ea;
+        padding: 25px;
 
-                display: none;
-            }
+        display: none;
+    }
 
 
-            .mybtns {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
+    .mybtns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-                margin-top: 20px;
-            }
+        margin-top: 20px;
+    }
 
-            .mybtns > button {
-                margin-right: 10px;
-            }
+    .mybtns > button {
+        margin-right: 10px;
+    }
 
-            .card {
-                max-width: 700px;
-                margin: 25px auto;
-            }
+    .card {
+        max-width: 700px;
+        margin: 25px auto;
+    }
 
-            .mybtn {
-                float: right;
-                position: absolute;
-                bottom: 20px;
-                right: 20px;
-            }
+    .mybtn {
+        float: right;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
 
-            .guest-note {
-                margin-bottom: 70px;
-            }
+    .guest-note {
+        margin-bottom: 70px;
+    }
 
-            @media (max-width: 760px) {
-                #grid {
-                    display: block;
+    @media (max-width: 760px) {
+        #grid {
+            display: block;
+        }
+    }
+
+
+</style>
+<script>
+    $(document).ready(function () {
+        show_comment()
+    })
+
+    function show_comment() {
+        $('#guest-note').empty()
+        $.ajax({
+            type: "GET",
+            url: "/comments",
+            data: {},
+            success: function (response) {
+                console.log(response)
+                let rows = response['comments']
+                for (let i = 0; i < rows.length; i++) {
+                    let name = rows[i]['name']
+                    let comment = rows[i]['comment']
+
+                    let temp_html = `<div class="card" style="background-color: ghostwhite">
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p>${comment}</p>
+                                                <footer class="blockquote-footer">${name}</footer>
+                                            </blockquote>
+                                            <div class="mybtn">
+                                                <button type="button" class="btn btn-secondary" onclick="delete_comment('${name}')">삭제</button>
+                                            </div>
+                                        </div>
+                                    </div>`
+                    $('#guest-note').append(temp_html)
                 }
             }
 
@@ -346,26 +381,26 @@
                     <p>✔ 수료하는 날까지 중도포기 없이 최상의 결과를 낼 수 있도록 끝까지 완주!!!</p>
                 </div>
 
-            </div>
-        </div>
-        <button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">응원하기</button>
+    </div>
+</div>
+<button type="button" class="btn btn-secondary posting-btn" onclick="open_box()">응원하기</button>
 
-        <div class="guest" id="guest" style="background-color: ghostwhite">
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="name" placeholder="name@example.com">
-                <label for="name">닉네임</label>
-            </div>
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
-                <label for="comment">남기고 싶은 말</label>
-            </div>
-            <div class="mybtns">
-                <button type="button" class="btn btn-secondary" onclick="save_comment()">응원 남기기</button>
-                <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-            </div>
-        </div>
-        <div class="guest-note"></div>
+<div class="guest" id="guest" style="background-color: ghostwhite">
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="name" placeholder="name@example.com">
+        <label for="name">닉네임</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
+        <label for="comment">남기고 싶은 말</label>
+    </div>
+    <div class="mybtns">
+        <button type="button" class="btn btn-secondary" onclick="save_comment()">응원 남기기</button>
+        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+    </div>
+</div>
+<div id="guest-note"></div>
 
-        </body>
+</body>
 
-        </html>
+</html>
